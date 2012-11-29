@@ -15,15 +15,15 @@ exports.play = (game) ->
     if call
       game.betting.call
     else
-      0
+      game.betting.call if game.betting.call < 50
   else
     hand = Hand.make game.community.concat(game.self.cards)
     if hand.rank >= 4
-      game.betting.raise
+      game.self.chips
     else if hand.rank >= 3
-      game.call
+      game.betting.call
     else
-      0
+      game.betting.call if game.betting.call < 50
 
 startingCards = ["A", "K", "Q", "J"]
 
